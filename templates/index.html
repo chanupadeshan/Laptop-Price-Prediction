@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Price Predictor</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS for improved styling -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .display-5 {
+            color: #0d6efd;
+        }
+
+        .form-label {
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+
+        .btn-primary:hover {
+            background-color: #0a58ca;
+            border-color: #0a58ca;
+        }
+
+        .form-select, .form-control {
+            border-radius: 5px;
+        }
+
+        .mt-5 {
+            margin-top: 2rem;
+        }
+
+        .mb-5 {
+            margin-bottom: 2rem;
+        }
+
+        .predicted-price-card {
+            background: linear-gradient(145deg, #6c7ae0, #4e5ab8);
+            border-radius: 15px;
+            padding: 30px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .predicted-price-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .predicted-price-card h3 {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .predicted-price-card .price-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #ffe600;
+        }
+
+        .predicted-price-card .price-details {
+            font-size: 1rem;
+            color: #e0e0e0;
+            margin-top: 10px;
+        }
+
+
+
+        .predicted-price-card {
+            background-color: #d1e7fd;
+            border-left: 5px solid #0d6efd;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center text content */
+        }
+        
+        .center {
+            text-align: center; /* Ensures text alignment */
+        }
+        
+        .price-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0d6efd;
+            margin-top: 10px;
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div class="container mt-5 mb-5">
+        <div class="text-center mb-4">
+            <h1 class="display-5 fw-bold">Laptop Price Predictor</h1>
+            <p class="lead">Enter the details to predict the price of the laptop.</p>
+        </div>
+
+        <form action="/" method="POST">
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="ram" class="form-label">RAM (GB):</label>
+                    <input type="number" name="ram" class="form-control" placeholder="Enter RAM in GB" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="weight" class="form-label">Weight (KG):</label>
+                    <input type="number" step="0.1" name="weight" class="form-control" placeholder="Enter Weight in KG" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <label for="touchscreen" class="form-label">Touch Screen:</label>
+                    <select name="touchscreen" class="form-select" required>
+                        <option value="" selected hidden>Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label for="ips" class="form-label">IPS Display:</label>
+                    <select name="ips" class="form-select" required>
+                        <option value="" selected hidden>Select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="company" class="form-label">Company:</label>
+                <select name="company" class="form-select" required>
+                    <option value="" selected hidden>Select</option>
+                    <option value="acer">Acer</option>
+                    <option value="apple">Apple</option>
+                    <option value="asus">Asus</option>
+                    <option value="dell">Dell</option>
+                    <option value="hp">HP</option>
+                    <option value="lenovo">Lenovo</option>
+                    <option value="msi">Microsoft</option>
+                    <option value="toshiba">Toshiba</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="type" class="form-label">Type:</label>
+                <select name="type" class="form-select" required>
+                    <option value="" selected hidden>Select</option>
+                    <option value="2in1convertible">2 in 1 Convertible</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="netbook">Netbook</option>
+                    <option value="notebook">Notebook</option>
+                    <option value="ultrabook">Ultrabook</option>
+                    <option value="workstation">Workstation</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="os" class="form-label">Operating System:</label>
+                <select name="os" class="form-select" required>
+                    <option value="" selected hidden>Select</option>
+                    <option value="linux">Linux</option>
+                    <option value="mac">Mac</option>
+                    <option value="windows">Windows</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="cpu" class="form-label">CPU:</label>
+                <select name="cpu" class="form-select" required>
+                    <option value="" selected hidden>Select</option>
+                    <option value="amd">AMD</option>
+                    <option value="intelcorei3">Intel Core i3</option>
+                    <option value="intelcorei5">Intel Core i5</option>
+                    <option value="intelcorei7">Intel Core i7</option>
+                    <option value="others">Others</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="gpu" class="form-label">GPU:</label>
+                <select name="gpu" class="form-select" required>
+                    <option value="" selected hidden>Select</option>
+                    <option value="amd">AMD</option>
+                    <option value="intel">Intel</option>
+                    <option value="nvidia">Nvidia</option>
+                </select>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Predict</button>
+            </div>
+        </form>
+
+        <div class="mt-5">
+            {% if pred != 0 %}
+                <div class="predicted-price-card">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div class="text-center">
+                            <h3 class="center">Predicted Price</h3>
+                            <p class="price-value">LKR {{ pred }}</p>
+                            <p class="price-details">Based on the selected features such as RAM, CPU, GPU, company, and more.</p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+        
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

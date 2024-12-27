@@ -62,7 +62,7 @@ def index():
         
         pred = prediction(feature_list)
         pred = pred[0]
-        pred = round(pred,2) *300
+        pred = round(pred,0) *300
         
         
     return render_template('index.html',pred=pred)

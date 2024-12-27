@@ -211,21 +211,19 @@
                 <button type="submit" class="btn btn-primary">Predict</button>
             </div>
         </form>
-
-        <div class="mt-5">
-            {% if pred != 0 %}
-                <div class="predicted-price-card">
-                    <div class="d-flex justify-content-center align-items-center">
-                        <div class="text-center">
-                            <h3 class="center">Predicted Price</h3>
-                            <p class="price-value">LKR {{ pred }}</p>
-                            <p class="price-details">Based on the selected features such as RAM, CPU, GPU, company, and more.</p>
-                        </div>
-                    </div>
+        {% if pred != 0%}
+        <div class="predicted-price-card">
+            <div class="d-flex justify-content-center align-items-center">
+                <div class="text-center">
+                        <h3 class="center">Predicted Price</h3>
+                        <p class="price-value">LKR {{ pred }}</p>
+                        <p class="price-details">
+                            The price is calculated based on the selected features such as RAM, CPU, GPU, company, and more. 
+                            Predicted price falls within the range of LKR {{ pred - 5000 }} to LKR {{ pred + 5000 }}.</p>
                 </div>
-            {% endif %}
+            </div>
         </div>
-        
+        {% endif %}
     </div>
 
     <!-- Bootstrap JS Bundle with Popper -->
